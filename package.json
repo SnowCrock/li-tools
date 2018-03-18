@@ -1,0 +1,35 @@
+{
+  "name": "li-tools",
+  "version": "0.0.1",
+  "description": "a basic server tools, local server for develop react selt-tools",
+  "main": "index.js",
+  "author": "lizhangrui",
+  "license": "MIT",
+  "bin": {
+    "li-tools": "./bin/li-tools.js"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "chalk": "^2.3.2",
+    "commander": "^2.15.0",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.0",
+    "eslint-loader": "^2.0.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "fs-extra": "^5.0.0",
+    "html-webpack-plugin": "^3.0.6",
+    "less": "^3.0.1",
+    "less-loader": "^4.1.0",
+    "react-dev-utils": "^5.0.0",
+    "style-loader": "^0.20.3",
+    "url-loader": "^1.0.1",
+    "webpack": "3.8.1",
+    "webpack-dev-server": "2.11.2",
+    "webpack-merge": "^4.1.2"
+  }
+}
