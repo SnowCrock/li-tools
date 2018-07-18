@@ -4,4 +4,4 @@
 /flow-typed/
 .idea
 .vscode
-.log
+*.log
