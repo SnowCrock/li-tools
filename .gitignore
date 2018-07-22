@@ -1,7 +1,4 @@
-
-**/node_modules
-**/dist
-/flow-typed/
-.idea
 .vscode
 *.log
+node_modules
+static
