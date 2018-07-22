@@ -28,12 +28,12 @@ program
 
 program.parse(process.argv)
 
-const extras = process.argv.slice(3)
+const extra = process.argv.slice(3)
 
 if (!script) {
   program.help()
   process.exit(1)
 }
 
-spawn('node', [path.resolve(__dirname, `../lib/${script}.js`)], { stdio: 'inherit' })
+spawn('node', [path.resolve(__dirname, `../lib/${script}.js`), ...extra], { stdio: 'inherit' })
 // program.project && spawn('node', [path.resolve(__dirname, '../lib/server.js')], { stdio: 'inherit' })
