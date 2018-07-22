@@ -29,7 +29,7 @@ module.exports = {
   plugins: [
     new webpack.DllPlugin({
       path: paths.dllMainfest,
-      name: '[name]_library', 
+      name: '[name]_library',
     }),
     new ProgressPlugin(),
   ]

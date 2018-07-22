@@ -4,7 +4,7 @@ function getBabelConfig() {
     require.resolve('babel-preset-react'),
     require.resolve('babel-preset-stage-2'),
   ]
-  return {presets}
+  return { presets }
 }
 
 module.exports = getBabelConfig

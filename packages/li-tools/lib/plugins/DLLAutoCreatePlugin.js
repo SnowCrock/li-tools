@@ -7,7 +7,7 @@ class DLLAutoCreatePlugin {
   constructor() {
     this.hasCompile = false
   }
-  
+
   checkdll() {
     if (this.hasCompile) return
     this.hasCompile = true

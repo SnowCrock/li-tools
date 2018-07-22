@@ -8,11 +8,11 @@ const chalk = require('chalk')
 const appDirectory = fs.realpathSync(process.cwd())
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
 
-function getPath(cwd){
+function getPath(cwd) {
   return resolveApp(cwd)
 }
 
-function getConfigFile(filename){
+function getConfigFile(filename) {
   const resolvePath = resolveApp(filename)
   const exist = fs.existsSync(resolvePath)
   if (fs.existsSync(resolvePath)) {

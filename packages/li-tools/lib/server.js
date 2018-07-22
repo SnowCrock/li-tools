@@ -17,7 +17,7 @@ const webpackConfig = require('./config/webpack.config.dev')
 
 const useYarn = fs.existsSync(paths.yarnLockFile)
 const isInteractive = process.env.isInteractive
-const protocol = process.env.HTTPS === 'true'? 'https' : 'http'
+const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'
 const hostname = process.env.HOST || '0.0.0.0'
 const defaultPort = 8001
 const appName = packageJson.name
@@ -46,8 +46,8 @@ choosePort(hostname, defaultPort)
 
     // windows下可能存在端口号不关闭的情况
     // 这里进行变量声明是防止分号';' 造成的语法错误
-    const killSemicolon = ['SIGINT', 'SIGTERM'].forEach(function(sig) {
-      process.on(sig, function() {
+    const killSemicolon = ['SIGINT', 'SIGTERM'].forEach(function (sig) {
+      process.on(sig, function () {
         devServer.close()
         process.exit()
       })

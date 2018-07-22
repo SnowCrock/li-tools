@@ -46,7 +46,7 @@ const webpackDevServerConfig = {
 
   //Provides the ability to execute custom middleware prior to all other middleware internally within the server. 
   // This could be used to define custom handlers, for example
-  before(app){
+  before(app) {
     // This lets us open files from the runtime error overlay.
     app.use(errorOverlayMiddleware());
     // This service worker file is effectively a 'no-op' that will reset any
@@ -57,7 +57,7 @@ const webpackDevServerConfig = {
     app.use(noopServiceWorkerMiddleware());
   },
   // Provides the ability to execute custom middleware after all other middleware internally within the server.
-  after(app){
+  after(app) {
     // do fancy stuff
   }
 }
