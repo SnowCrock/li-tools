@@ -10,6 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // const CompressionPlugin = require('compression-webpack-plugin')
 const ProgressPlugin = require('progress-bar-webpack-plugin')
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 const HtmltemplatePlugin = require('./getHtmlTemplate')
 const { getConfigFile, getPath } = require('./paths')
 const getBabelConfig = require('./getBabelConfig')
@@ -77,6 +78,9 @@ let config = {
       },
     }),
     new DLLAutoCreatePlugin(),
+    new AddAssetHtmlPlugin([
+      { filepath: getPath(`${paths.dllPath}/vendor.dll.js`) },
+    ]),
     new webpack.DllReferencePlugin({
       manifest: paths.dllMainfest,
     }),

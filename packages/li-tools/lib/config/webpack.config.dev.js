@@ -8,6 +8,7 @@ const merge = require('webpack-merge')
 const autoprefixer = require('autoprefixer')
 const ProgressPlugin = require('progress-bar-webpack-plugin')
 const eslintFormatter = require('react-dev-utils/eslintFormatter')
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 const DLLAutoCreatePlugin = require('../plugins/DLLAutoCreatePlugin')
 const HtmltemplatePlugin = require('./getHtmlTemplate')
 const { getConfigFile, getPath } = require('./paths')
@@ -64,6 +65,9 @@ let config = {
       },
     }),
     new DLLAutoCreatePlugin(),
+    new AddAssetHtmlPlugin([
+      { filepath: getPath(`${paths.dllPath}/vendor.dll.js`) },
+    ]),
     new webpack.DllReferencePlugin({
       manifest: paths.dllMainfest,
     })
