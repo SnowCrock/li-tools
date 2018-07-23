@@ -54,9 +54,11 @@ let config = {
         .relative(paths.appSrc, info.absoluteResourcePath)
         .replace(/\\/g, '/'),
   },
-  resolve:{},
-  devtool : argv.debug? 'source-map':'cheap-module-source-map',
-  plugins:[
+  resolve: {
+    extensions: ['.wasm', '.mjs', '.js', 'jsx', '.json']
+  },
+  devtool: argv.debug ? 'source-map' : 'cheap-module-source-map',
+  plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor','runtime'],
       filename: '[name].[hash].js'

@@ -48,7 +48,9 @@ let config = {
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
 
   },
-  resolve: {},
+  resolve: {
+    extensions: ['.wasm', '.mjs', '.js', 'jsx', '.json']
+  },
   devtool: 'source-map',
   mode: 'development',
   plugins: [
