@@ -21,7 +21,7 @@ const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'
 const hostname = process.env.HOST || '0.0.0.0'
 const defaultPort = 8001
 const appName = packageJson.name
-console.log(123)
+
 choosePort(hostname, defaultPort)
   .then(port => {
     if (port === null) {

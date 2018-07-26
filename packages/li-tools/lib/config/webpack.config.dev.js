@@ -20,8 +20,12 @@ const argv = require('yargs')
     describe: '',
     default: true,
   })
+  .option('no-babel', {
+    describe: '',
+  })
   .argv
 
+const useBabel = argv['no-babel'] || argv['no-babel'] === undefined
 const packageJson = getConfigFile(paths.packageJson)
 const appWebpackConfig = getConfigFile(paths.webpackConfig)
 const ROUTE_PATH = ''
@@ -96,7 +100,7 @@ let config = {
         {
           loader: resolve('babel-loader'),
           options: {
-            ...getBabelConfig(),
+            ...getBabelConfig(useBabel),
             cacheDirectory: true,
           }
         }
