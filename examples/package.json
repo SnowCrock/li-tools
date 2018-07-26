@@ -4,7 +4,7 @@
   "description": "examples for li-tools",
   "main": "src/index.js",
   "scripts": {
-    "start": "li-tools start --eslint=false",
+    "start": "li-tools start --eslint --no-babel",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -19,6 +19,7 @@
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-saga": "^0.16.0"
   }
 }
