@@ -20,17 +20,16 @@ const argv = require('yargs')
     describe: '',
     default: true,
   })
-  .option('no-babel', {
+  .option('noBabel', {
     describe: '',
   })
   .argv
 
-const useBabel = argv['no-babel'] || argv['no-babel'] === undefined
+const noBabel = argv['noBabel'] === 'undefined' || argv['noBabel']
 const packageJson = getConfigFile(paths.packageJson)
 const appWebpackConfig = getConfigFile(paths.webpackConfig)
 const ROUTE_PATH = ''
 const theme = packageJson.theme || {}
-
 /** windows require.resolve 返回大写盘符 */
 const resolve = require.resolve
 let config = {
@@ -100,7 +99,7 @@ let config = {
         {
           loader: resolve('babel-loader'),
           options: {
-            ...getBabelConfig(useBabel),
+            ...getBabelConfig(noBabel),
             cacheDirectory: true,
           }
         }

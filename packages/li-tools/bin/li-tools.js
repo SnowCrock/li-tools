@@ -14,15 +14,15 @@ function useBabel(val) {
 program
   .version(version, '-v, --version')
   .usage('[options] <file ...>')
-  
+  .option('--no-babel', 'use only babel for react', useBabel)
   // .option('start', 'start a project')
   // .parse(process.argv)
 
 let script = ''
 program
   .command('start')
-  .option('--eslint <boolean>', 'open or close eslint')
-  .option('--no-babel <boolean>', 'use only babel for react', useBabel)
+  .option('--eslint', 'open or close eslint')
+  .option('--no-open', 'not open browser auto')
   .action((options) => {
     script = 'server'
   })
@@ -35,8 +35,7 @@ program
 
 program.parse(process.argv)
 
-const extra = process.argv.slice(3).concat([`--no-babel=${program['no-babel']}`])
-console.log(program['no-babel'])
+const extra = process.argv.slice(3).concat([`--noBabel=${program['no-babel']}`])
 if (!script) {
   program.help()
   process.exit(1)

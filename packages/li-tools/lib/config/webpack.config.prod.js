@@ -27,8 +27,12 @@ const argv = require('yargs')
   describe: '',
   default: false,
 })
+.option('noBabel', {
+  describe: '',
+})
 .argv
 
+const noBabel = argv['noBabel'] === 'undefined' || argv['noBabel']
 const packageJson = getConfigFile(paths.packageJson)
 const appWebpackConfig = getConfigFile(paths.webpackConfig)
 const theme = packageJson.theme || {}
@@ -90,7 +94,7 @@ let config = {
         {
           loader:resolve('babel-loader'),
           options:{
-            ...getBabelConfig(),
+            ...getBabelConfig(noBabel),
             cacheDirectory:true,
           }
         }

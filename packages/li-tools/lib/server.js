@@ -40,8 +40,10 @@ choosePort(hostname, defaultPort)
       if (isInteractive) {
         clearConsole()
       }
-      console.log(chalk.cyan('Starting the development server...\n'));
-      openBrowser(urls.localUrlForBrowser)
+      console.log(chalk.cyan('Starting the development server...\n'))
+      if(process.argv.toString().indexOf('no-open') === -1) {
+        openBrowser(urls.localUrlForBrowser)
+      }
     })
 
     // windows下可能存在端口号不关闭的情况
