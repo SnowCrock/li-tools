@@ -16,12 +16,14 @@ let script = ''
 program
   .command('start')
   .option('--eslint <boolean>')
+  .option('--no-babel')
   .action(() => {
     script = 'server'
   })
 
 program
   .command('build')
+  .option('--no-babel <boolean>')
   .action(() => {
     script = 'build'
   })

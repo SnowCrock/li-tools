@@ -1,6 +1,6 @@
 {
   "name": "li-tools",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a basic server tools, local server for develop react selt-tools",
   "main": "index.js",
   "author": "lizhangrui",
