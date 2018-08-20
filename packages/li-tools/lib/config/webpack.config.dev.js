@@ -19,7 +19,7 @@ const argv = require('yargs')
   .option('eslint', {
     type: 'boolean',
     describe: '',
-    default: true,
+    default: false,
   })
   .argv
 
