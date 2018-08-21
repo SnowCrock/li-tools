@@ -6,12 +6,16 @@ const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // const CompressionPlugin = require('compression-webpack-plugin')
 const ProgressPlugin = require('progress-bar-webpack-plugin')
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
+const DLLAutoCreatePlugin = require('../plugins/DLLAutoCreatePlugin')
 const HtmltemplatePlugin = require('./getHtmlTemplate')
 const { getConfigFile, getPath } = require('./paths')
+const paths = require('./paths').default
 const getBabelConfig = require('./getBabelConfig')
 
 process.env.NODE_ENV = 'production'
@@ -38,6 +42,7 @@ const appWebpackConfig = getConfigFile(paths.webpackConfig)
 const theme = packageJson.theme || {}
 /** windows require.resolve 返回大写盘符 */
 const resolve = require.resolve
+const ROUTE_PATH = ''
 let config = {
   // context: getPath(''),
   entry:{
@@ -62,11 +67,8 @@ let config = {
     extensions: ['.wasm', '.mjs', '.js', 'jsx', '.json']
   },
   devtool: argv.debug ? 'source-map' : 'cheap-module-source-map',
+  mode: 'development',
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor','runtime'],
-      filename: '[name].[hash].js'
-    }),
     HtmltemplatePlugin,
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
@@ -81,6 +83,9 @@ let config = {
       },
     }),
     new DLLAutoCreatePlugin(),
+    new AddAssetHtmlPlugin([
+      { filepath: getPath(`${paths.dllPath}/vendor.dll.js`) },
+    ]),
     new webpack.DllReferencePlugin({
       manifest: paths.dllMainfest,
     }),
@@ -90,7 +95,6 @@ let config = {
       test: /\.jsx?$/,
       exclude: /node_modules/,
       use: [
-        resolve('react-hot-loader/webpack'), 
         {
           loader:resolve('babel-loader'),
           options:{
@@ -100,17 +104,34 @@ let config = {
         }
       ]
     },{
-      test: /\.css$/,
-      use: [resolve("style-loader"), resolve("css-loader")]
-    }, {
-      test: /\.less$/,
-      use: ExtractTextPlugin.extract({
-        fallback: resolve("style-loader"),
-        use:[
-          resolve("css-loader"),
-          `${resolve('less-loader')}?{"sourceMap":true,"modifyVars":${JSON.stringify(theme)}}`,
-        ]
-      }),
+      test: /\.(less|css)$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        resolve("css-loader"),
+        {
+          loader: resolve('postcss-loader'),
+          options: {
+            plugins: [
+              // TODO: 仍然使用webpack3 的plugin
+              autoprefixer({
+                browsers: [
+                  '>1%',
+                  'last 4 versions',
+                  'Firefox ESR',
+                  'not ie < 9', // React doesn't support IE8 anyway
+                ],
+                flexbox: 'no-2009',
+              }),
+            ],
+          }
+        },
+        {
+          loader: resolve('less-loader'),
+          options: {
+            modifyVars: theme,
+          },
+        }
+      ]
     },{
       test: /\.woff|\.woff2|.eot|\.svg|\.ttf/,
       use: `${resolve('url-loader')}?prefix=font/&limit=10000&[name]-[hash].[ext]`

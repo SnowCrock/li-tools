@@ -23,12 +23,14 @@ program
   .command('start')
   .option('--eslint', 'open or close eslint')
   .option('--no-open', 'not open browser auto')
+  .option('--no-babel', 'use babel or not')
   .action((options) => {
     script = 'server'
   })
 
 program
   .command('build')
+  .option('--no-babel <boolean>')
   .action(() => {
     script = 'build'
   })
