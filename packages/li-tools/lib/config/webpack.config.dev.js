@@ -138,7 +138,7 @@ let config = {
         }
       ]
     }, {
-      test: /\.woff|\.woff2|.eot|\.svg|\.ttf/,
+      test: /\.woff|\.woff2|\.eot|\.svg|\.ttf$/,
       use: `${resolve('url-loader')}?prefix=font/&limit=10000&[name]-[hash].[ext]`
     }, {
       test: /\.png/,
